@@ -115,7 +115,6 @@ namespace Tavisca.Bootcamp.LanguageBasics.Exercise1
             finalD[i]=best;
             }
         return finalD;
-        throw new NotImplementedException();
         }
     }
 }
