@@ -43,76 +43,76 @@ namespace Tavisca.Bootcamp.LanguageBasics.Exercise1
             // Add your code here.
             int[] calorie=new int[protein.Length];
             int[] finalD=new int[dietPlans.Length];
-            int[] M=new int[4];
+            int[] multipleSelection=new int[4];
             int[][] selection=new int[4][];
             
             //Total Calorie for a Diet
-            for(int i=0;i<protein.Length;i++)
-                calorie[i] = fat[i] * 9 + 5*(carbs[i] + protein[i]);
+            for(int index=0;index<protein.Length;index++)
+                calorie[index] = fat[index] * 9 + 5*(carbs[index] + protein[index]);
     
-            String plan="";
-            int j,k;
-            for(int i=0;i<dietPlans.Length;i++)
+            string plan="";
+            int indexSelection,tempIndex;
+            for(int index=0;index<dietPlans.Length;index++)
             {
-                plan=dietPlans[i];
-                for(j=0;j<4;j++)
-                if(j<plan.Length)
+                plan=dietPlans[index];
+                for(indexSelection=0;indexSelection<4;indexSelection++)
+                if(indexSelection<plan.Length)
                 {
-                    M[j] = char.IsLower(plan[j]) ? 1 : -1;
-                    switch(char.ToLower(plan[j]))
+                    multipleSelection[indexSelection] = char.IsLower(plan[indexSelection]) ? 1 : -1;
+                    switch(char.ToLower(plan[indexSelection]))
                     {
                         case 'c': 
                         {
-                            selection[j] = carbs;
+                            selection[indexSelection] = carbs;
                             break;
                         }
                         case 'p':
                         {
-                            selection[j] = protein;
+                            selection[indexSelection] = protein;
                             break;
                         }
                         case 'f':
                         {
-                            selection[j] = fat;
+                            selection[indexSelection] = fat;
                             break;
                         }
                         case 't':
                         {
-                            selection[j] = calorie;
+                            selection[indexSelection] = calorie;
                             break;
                         }
                     }
                 }
                 else
                 {
-                    M[j]=0;
-                    selection[j]=null;
+                    multipleSelection[indexSelection]=0;
+                    selection[indexSelection]=null;
                 }
         
                 int best=0;
-                for(j=0;j<protein.Length;j++)
+                for(indexSelection=0;indexSelection<protein.Length;indexSelection++)
                 {
                     int b=best;
-                    for(k=0;k<4;k++)
+                    for(tempIndex=0;tempIndex<4;tempIndex++)
                     {
-                        if(M[k]==0)
+                        if(multipleSelection[tempIndex]==0)
                         {
-                            best = Math.Min(j,b);
+                            best = Math.Min(indexSelection,b);
                             break;
                         }
-                        if(M[k]*selection[k][j].CompareTo(selection[k][b])<0)
+                        if(multipleSelection[tempIndex]*selection[tempIndex][indexSelection].CompareTo(selection[tempIndex][b])<0)
                         {
-                            best=j;
+                            best=indexSelection;
                             break;
                         }
-                        if(M[k]*selection[k][j].CompareTo(selection[k][b])>0)
+                        if(multipleSelection[tempIndex]*selection[tempIndex][indexSelection].CompareTo(selection[tempIndex][b])>0)
                         {
                             best=b;
                             break;
                         }
                     }
                 }
-            finalD[i]=best;
+            finalD[index]=best;
             }
         return finalD;
         }
